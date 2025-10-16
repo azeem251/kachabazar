@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import Swal from "sweetalert2";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
-
+import { BACKEND_URL } from '../../utils/api';
 const Checkout = () => {
   const dispatch = useDispatch();
   const stripe = useStripe();

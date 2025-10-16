@@ -12,7 +12,7 @@ const MyOrdersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 10;
   const navigate = useNavigate();
-BACKEND_URL
+
   const fetchOrders = async () => {
     try {
       const res = await axios.get(`${BACKEND_URL}/api/order/my-orders`, {

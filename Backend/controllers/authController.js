@@ -95,49 +95,33 @@ export const register = async (req, res) => {
 //  LOGIN API
 
 export const login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user || !user.password) return res.status(400).json({ message: 'Email not found' });
 
-    // 1️⃣ Find user
-    const user = await User.findOne({ email });
-    if (!user || !user.password) {
-      return res.status(400).json({ message: "Email not found" });
-    }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) return res.status(400).json({ message: 'Password does not match' });
 
-    // 2️⃣ Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Password does not match" });
-    }
-
-    // 3️⃣ Generate JWT token
-    const token = generateToken(user._id, user.email);
-
-    // 4️⃣ Set secure cookie (for Render cross-origin)
+  const token = generateToken(user._id, user.email);
+  // res.cookie('token', token, { httpOnly: true });
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,         // ✅ Required for HTTPS
-      sameSite: "none",     // ✅ Required for cross-origin
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
-
-    user.token = token;
-    await user.save();
-
-    // 5️⃣ Send success response
-    res.status(200).json({
-      message: "Login successful",
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        token, // you can send token optionally
-      },
-    });
-  } catch (err) {
-    console.error("❌ Login error:", err);
-    res.status(500).json({ message: "Server error" });
-  }
+  httpOnly: true,
+  sameSite: "Lax", // or "None" with `secure: true` if HTTPS
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+});
+ user.token = token;
+   await user.save();
+  res.status(200).json({
+    message: 'Login successful',
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      token: user.token, // 👈 sent to client as well
+    },
+ 
+  });
+  
 };
 
 

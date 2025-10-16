@@ -26,7 +26,7 @@ const app = express();
 // Allowed origins - dono localhost aur IP address add karo
 const allowedOrigins = [
   'https://kachabazar-ui.onrender.com',
-  // 'http://http://192.168.1.65:5173',
+  "http://localhost:5173"
  
 ];
 

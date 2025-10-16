@@ -1,0 +1,584 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "hello": {
+            "intent": "greet.hello",
+            "domain": "default"
+          },
+          "hi": {
+            "intent": "greet.hello",
+            "domain": "default"
+          },
+          "alaikum,assalamu": {
+            "intent": "greet.hello",
+            "domain": "default"
+          },
+          "are,how,you": {
+            "intent": "greet.how",
+            "domain": "default"
+          },
+          "is,name,what,your": {
+            "intent": "bot.name",
+            "domain": "default"
+          },
+          "are,who,you": {
+            "intent": "bot.name",
+            "domain": "default"
+          },
+          "thank,you": {
+            "intent": "user.thanks",
+            "domain": "default"
+          },
+          "bye": {
+            "intent": "greet.bye",
+            "domain": "default"
+          },
+          "see,you": {
+            "intent": "greet.bye",
+            "domain": "default"
+          },
+          "help,me": {
+            "intent": "user.help",
+            "domain": "default"
+          },
+          "i,need,support": {
+            "intent": "user.help",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greet.hello": "default",
+          "greet.how": "default",
+          "bot.name": "default",
+          "user.thanks": "default",
+          "greet.bye": "default",
+          "user.help": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "greet.hello"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi",
+            "intent": "greet.hello"
+          },
+          {
+            "domain": "default",
+            "utterance": "assalamu alaikum",
+            "intent": "greet.hello"
+          },
+          {
+            "domain": "default",
+            "utterance": "how are you",
+            "intent": "greet.how"
+          },
+          {
+            "domain": "default",
+            "utterance": "what is your name",
+            "intent": "bot.name"
+          },
+          {
+            "domain": "default",
+            "utterance": "who are you",
+            "intent": "bot.name"
+          },
+          {
+            "domain": "default",
+            "utterance": "thank you",
+            "intent": "user.thanks"
+          },
+          {
+            "domain": "default",
+            "utterance": "bye",
+            "intent": "greet.bye"
+          },
+          {
+            "domain": "default",
+            "utterance": "see you",
+            "intent": "greet.bye"
+          },
+          {
+            "domain": "default",
+            "utterance": "help me",
+            "intent": "user.help"
+          },
+          {
+            "domain": "default",
+            "utterance": "i need support",
+            "intent": "user.help"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "hello": 1,
+              "hi": 1,
+              "assalamu": 1,
+              "alaikum": 1,
+              "how": 1,
+              "are": 1,
+              "you": 1,
+              "what": 1,
+              "is": 1,
+              "your": 1,
+              "name": 1,
+              "who": 1,
+              "thank": 1,
+              "bye": 1,
+              "see": 1,
+              "help": 1,
+              "me": 1,
+              "i": 1,
+              "need": 1,
+              "support": 1
+            },
+            "intents": {
+              "greet.hello": 1,
+              "greet.how": 1,
+              "bot.name": 1,
+              "user.thanks": 1,
+              "greet.bye": 1,
+              "user.help": 1
+            },
+            "intentFeatures": {
+              "greet.hello": {
+                "hello": 1,
+                "hi": 1,
+                "assalamu": 1,
+                "alaikum": 1
+              },
+              "greet.how": {
+                "how": 1,
+                "are": 1,
+                "you": 1
+              },
+              "bot.name": {
+                "what": 1,
+                "is": 1,
+                "your": 1,
+                "name": 1,
+                "who": 1,
+                "are": 1,
+                "you": 1
+              },
+              "user.thanks": {
+                "thank": 1,
+                "you": 1
+              },
+              "greet.bye": {
+                "bye": 1,
+                "see": 1,
+                "you": 1
+              },
+              "user.help": {
+                "help": 1,
+                "me": 1,
+                "i": 1,
+                "need": 1,
+                "support": 1
+              }
+            },
+            "featuresToIntent": {
+              "hello": [
+                "greet.hello"
+              ],
+              "hi": [
+                "greet.hello"
+              ],
+              "assalamu": [
+                "greet.hello"
+              ],
+              "alaikum": [
+                "greet.hello"
+              ],
+              "how": [
+                "greet.how"
+              ],
+              "are": [
+                "greet.how",
+                "bot.name"
+              ],
+              "you": [
+                "greet.how",
+                "bot.name",
+                "user.thanks",
+                "greet.bye"
+              ],
+              "what": [
+                "bot.name"
+              ],
+              "is": [
+                "bot.name"
+              ],
+              "your": [
+                "bot.name"
+              ],
+              "name": [
+                "bot.name"
+              ],
+              "who": [
+                "bot.name"
+              ],
+              "thank": [
+                "user.thanks"
+              ],
+              "bye": [
+                "greet.bye"
+              ],
+              "see": [
+                "greet.bye"
+              ],
+              "help": [
+                "user.help"
+              ],
+              "me": [
+                "user.help"
+              ],
+              "i": [
+                "user.help"
+              ],
+              "need": [
+                "user.help"
+              ],
+              "support": [
+                "user.help"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "hello",
+                "hi",
+                "assalamu",
+                "alaikum",
+                "how",
+                "are",
+                "you",
+                "what",
+                "is",
+                "your",
+                "name",
+                "who",
+                "thank",
+                "bye",
+                "see",
+                "help",
+                "me",
+                "i",
+                "need",
+                "support"
+              ],
+              "intents": [
+                "greet.hello",
+                "greet.how",
+                "bot.name",
+                "user.thanks",
+                "greet.bye",
+                "user.help"
+              ],
+              "perceptrons": [
+                [
+                  9.26452922821045,
+                  9.263506889343262,
+                  4.711607933044434,
+                  4.711607933044434,
+                  -0.6142792701721191,
+                  -1.1624040603637695,
+                  -3.6375722885131836,
+                  -1.2170403003692627,
+                  -1.2170403003692627,
+                  -1.2170403003692627,
+                  -1.2170403003692627,
+                  -0.5026959180831909,
+                  -1.2557357549667358,
+                  -4.638636112213135,
+                  -1.2053066492080688,
+                  -2.4201653003692627,
+                  -2.4201653003692627,
+                  -1.616809606552124,
+                  -1.616809606552124,
+                  -1.616809606552124,
+                  4.8567873336317255
+                ],
+                [
+                  -0.14158548414707184,
+                  -0.13805457949638367,
+                  -0.09381783753633499,
+                  -0.09381783753633499,
+                  8.89642333984375,
+                  3.86338472366333,
+                  1.2029129266738892,
+                  -0.15424443781375885,
+                  -0.15424443781375885,
+                  -0.15424443781375885,
+                  -0.15424443781375885,
+                  -5.039764881134033,
+                  -1.3354190587997437,
+                  -0.17788065969944,
+                  -1.3202358484268188,
+                  -0.10631240159273148,
+                  -0.10631240159273148,
+                  -0.08557454496622086,
+                  -0.08557454496622086,
+                  -0.08557454496622086,
+                  0.12927305662953129
+                ],
+                [
+                  -0.6171221733093262,
+                  -0.6107013821601868,
+                  -0.3870123624801636,
+                  -0.3870123624801636,
+                  -5.062996864318848,
+                  3.80037522315979,
+                  0.8555840253829956,
+                  3.4243662357330322,
+                  3.4243662357330322,
+                  3.4243662357330322,
+                  3.4243662357330322,
+                  8.86960220336914,
+                  -1.4716951847076416,
+                  -0.66364586353302,
+                  -1.4704267978668213,
+                  -0.4173874258995056,
+                  -0.4173874258995056,
+                  -0.32757440209388733,
+                  -0.32757440209388733,
+                  -0.32757440209388733,
+                  0.5970733989842687
+                ],
+                [
+                  -0.5137828588485718,
+                  -0.5112226009368896,
+                  -0.26500841975212097,
+                  -0.26500841975212097,
+                  -1.3536880016326904,
+                  -2.684978723526001,
+                  3.508021831512451,
+                  -0.13143274188041687,
+                  -0.13143274188041687,
+                  -0.13143274188041687,
+                  -0.13143274188041687,
+                  -1.3308995962142944,
+                  10.048998832702637,
+                  -0.5527753233909607,
+                  -3.8616292476654053,
+                  -0.27569055557250977,
+                  -0.27569055557250977,
+                  -0.1963411271572113,
+                  -0.1963411271572113,
+                  -0.1963411271572113,
+                  0.522584553929576
+                ],
+                [
+                  -2.3701860904693604,
+                  -2.3532774448394775,
+                  -1.2345718145370483,
+                  -1.2345718145370483,
+                  -1.5304712057113647,
+                  -3.0507779121398926,
+                  2.093512773513794,
+                  -0.6193423867225647,
+                  -0.6193423867225647,
+                  -0.6193423867225647,
+                  -0.6193423867225647,
+                  -1.5197513103485107,
+                  -4.358368873596191,
+                  11.53580379486084,
+                  9.509167671203613,
+                  -1.2452144622802734,
+                  -1.2452144622802734,
+                  -0.830582857131958,
+                  -0.830582857131958,
+                  -0.830582857131958,
+                  2.491103001737469
+                ],
+                [
+                  -1.566977858543396,
+                  -1.5609709024429321,
+                  -0.8638668060302734,
+                  -0.8638668060302734,
+                  -0.2951947748661041,
+                  -0.5615593791007996,
+                  -1.3886798620224,
+                  -0.48487579822540283,
+                  -0.48487579822540283,
+                  -0.48487579822540283,
+                  -0.48487579822540283,
+                  -0.23136436939239502,
+                  -0.4289298951625824,
+                  -1.5490379333496094,
+                  -0.37020206451416016,
+                  6.355306148529053,
+                  6.355306148529053,
+                  4.238672256469727,
+                  4.238672256469727,
+                  4.238672256469727,
+                  1.5673466022081517
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hi"
+      ],
+      [
+        "en",
+        "assalamu alaikum"
+      ],
+      [
+        "en",
+        "how are you"
+      ],
+      [
+        "en",
+        "what is your name"
+      ],
+      [
+        "en",
+        "who are you"
+      ],
+      [
+        "en",
+        "thank you"
+      ],
+      [
+        "en",
+        "bye"
+      ],
+      [
+        "en",
+        "see you"
+      ],
+      [
+        "en",
+        "help me"
+      ],
+      [
+        "en",
+        "i need support"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "greet.hello": [
+          {
+            "answer": "Wa Alaikum Assalam! How can I help you?"
+          }
+        ],
+        "greet.how": [
+          {
+            "answer": "I am good, Alhamdulillah! What about you?"
+          }
+        ],
+        "bot.name": [
+          {
+            "answer": "I am your Islamic AI Assistant 🤖."
+          }
+        ],
+        "user.thanks": [
+          {
+            "answer": "You’re welcome! 😊"
+          }
+        ],
+        "greet.bye": [
+          {
+            "answer": "Allah Hafiz! Take care."
+          }
+        ],
+        "user.help": [
+          {
+            "answer": "Sure! Please tell me what you need help with."
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

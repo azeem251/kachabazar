@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kalnia:wght@100..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Host Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  transition: all .4s ease-out;
+}
+body{
+  top: 0 !important;
+}
+body{
+  overflow-x: hidden !important;
+  height: 100vh !important;
+  
+}
+a{
+  text-decoration: none !important;
+  color: #707070 !important;
+}
+ul{
+  list-style-type: none !important;
+  margin: 0;
+  padding: 0;
+}
+input{
+  width: 100%;
+  outline: none !important;
+}
+p, h1, h2, h3, h4, h5 ,h6{
+  margin-bottom: 0 !important;
+}
+.container{
+  max-width: 1420px !important;
+  margin: 0 auto !important;
+}
+p{
+  line-height: 29px !important;
+  font-weight: 300 !important;
+}
+.topBar_wrapper{
+  font-size: 13px;
+}
+.topBar_wrapper span{
+  font-size: 13px;
+}
+.left_list ul li a:hover{
+  color: rgb(15, 167, 10) !important;
+}
+.left_links  li a:hover{
+  color: rgb(15, 167, 10) !important;
+}
+.goog-logo-link, .goog-te-gadget span {
+  display: none !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+.skiptranslate{
+  display: none !important;
+}
+
+.model_bg{
+  background-color: rgba(0, 0, 0, .5);
+}
+.menu_icon{
+  display: none;
+}
+.mobile_wrapper{
+  display: none;
+}
+.menu_heading_mobile{
+  font-size: 15px;
+}
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+    display: none;
+}
+.kachabazar_wrapper{
+  background-color: #eef2ff;
+  margin-top: 2em;
+  padding: 45px 0;
+}
+.shooping_icons{
+  color: var( --primary-bg-color);
+}
+.shooping_box p{
+  color: #707070;
+  font-size: 14px;
+}
+.shooping_box{
+  box-shadow: 0 0 4px 4px rgba(128, 128, 128, 0.13);
+  padding: 2em;
+  border-radius: 5px;
+}
+.footer_links h4{
+  margin-bottom: 12px !important;
+}
+.footer_links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer_links ul li a {
+  font-size: 15px;
+}
+.Footer_wrapper{
+  border-top: 1px solid gainsboro;
+  background-color: #fcfcfc;
+}
+.footerPaymetn_wrapper{
+  background-color: #f7f7f7;
+  padding: 45px 45px;
+  margin-top: 2em;
+  border-radius: 7px;
+}
+.bottom_footer p{
+  font-size: 14px;
+  color: #707070;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lates_box{
+  border: 2px solid rgb(211, 158, 14);
+}
+.lates_box:hover{
+   border: 2px solid rgb(12, 122, 8);
+}
+
+.prdoctu_name{
+  font-size: 14px !important;
+}
+.languageselector{
+  display: none;
+}
+
+.releated_wrapper .swiper.swiper-initialized.swiper-horizontal {
+    padding-bottom: 4em;
+}
+.about_wrapper{
+  padding: 7em 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:768px){
+  .left_list {
+    display: none;
+}
+.Right_list{
+    display: none;
+}
+.right_col_nav{
+  margin-top: 0 !important;
+}
+.menu_icon{
+  display: block;
+}
+.languageselector{
+  display: block;
+}
+.mobile_wrapper{
+display: block;
+}
+}
+@media (max-width:991px){
+ .nav_left{
+  justify-content: center !important;
+
+  
+}
+
+}
+
+
+@media (max-width:767px){
+ .top_right_links{
+  justify-content: center !important;
+  flex-wrap: wrap;
+}
+.flex_bottomFooter{
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.footer_links{
+  padding-left: 12px;
+}
+.call_heading{
+  justify-content: start !important;
+  align-items: start;
+}
+}
+
+
+
+/* Invoice sirf print me show ho, baaki hide */
+@media print {
+  body * {
+    visibility: hidden; /* sab hide */
+  }
+
+  #invoiceToPrint, #invoiceToPrint * {
+    visibility: visible; /* sirf invoice visible */
+  }
+
+  #invoiceToPrint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}

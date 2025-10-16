@@ -29,6 +29,10 @@ const allowedOrigins = [
   // 'http://http://192.168.1.65:5173',
  
 ];
+app.use(cors({
+  origin: 'https://kachabazar-ui.onrender.com',
+  credentials: true
+}));
 
 // CORS options
 const corsOptions = {

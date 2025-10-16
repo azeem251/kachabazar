@@ -2,4 +2,4 @@
 export const BACKEND_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:4747"
-    : "https://kachabazar-hzg3.onrender.com/";
+    : "https://kachabazar-hzg3.onrender.com";

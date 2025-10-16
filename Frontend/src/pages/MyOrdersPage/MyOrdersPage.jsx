@@ -76,7 +76,7 @@ const MyOrdersPage = () => {
                   <Button
                     size="small"
                     variant="outlined"
-                    onClick={() => navigate(`${BACKEND_URL}/order/${order._id}`)}
+                    onClick={() => navigate(`/order/${order._id}`)}
                   >
                     View
                   </Button>

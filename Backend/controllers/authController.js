@@ -106,8 +106,9 @@ export const login = async (req, res) => {
   // res.cookie('token', token, { httpOnly: true });
     res.cookie("token", token, {
   httpOnly: true,
-  sameSite: "Lax", // or "None" with `secure: true` if HTTPS
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    secure: true, // render = https
+    sameSite: "none", // frontend & backend are different domains
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
 });
  user.token = token;
    await user.save();

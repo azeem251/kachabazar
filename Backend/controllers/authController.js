@@ -128,15 +128,14 @@ export const login = async (req, res) => {
 
 //  LOGOUT API
 export const logout = (req, res) => {
-  res.clearCookie('token');
-  //  res.clearCookie('token', {
-  //   httpOnly: true,
-  //   sameSite: 'None', // important for cross-origin
-  //   secure: false, // true if using HTTPS
-  //   path: '/',     // make sure it's global
-  //   domain: '192.168.1.34' // <-- set your IP here
-  // });
-  res.status(200).json({ message: 'Logged out successfully' });
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true, // keep true if using HTTPS (Render)
+    sameSite: "None", // same as you used while setting cookie
+    path: "/", // global cookie path
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
 };
 
 // export const getCurrentUser = async (req, res) => {

@@ -209,7 +209,7 @@ const Checkout = () => {
                     <Typography fontWeight="bold">₹{(item.price * item.quantity).toFixed(2)}</Typography>
                     <IconButton color="error" onClick={async () => {
                       try {
-                        await axios.delete(`http://localhost:4747/api/cart/remove/${item.productId}`, { withCredentials: true });
+                        await axios.delete(`${BACKEND_URL}/api/cart/remove/${item.productId}`, { withCredentials: true });
                         dispatch(removeFromCart(item.productId));
                       } catch (err) {
                         console.error("Failed to delete from backend:", err);

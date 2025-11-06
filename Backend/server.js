@@ -103,24 +103,5 @@ app.get("/", (req, res) => {
 //   }
 // };
 
-  async function connectToMongoDB(){
-      let isConnectedDB = false;
-    try{
-       try {
-    await mongoose.connect(process.env.MongoDB_URI);
-         isConnectedDB = true;
-    console.log("✅ MongoDB Connected Sucessfully");
-  } catch (error) {
-    console.error("❌ MongoDB connection failed", error);
-    process.exit(1); // Stop server if DB connection fails
-  }
-    
-  }
-    app.use((req,res,next)=>{
-        if(!isConnectedDB){
-          connectToMongoDB();
-        }
-      next();
-    })
-    module.exports = app
+  
 startServer();

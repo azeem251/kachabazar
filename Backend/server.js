@@ -104,7 +104,7 @@ app.get("/", (req, res) => {
 // };
 
   async function connectToMongoDB(){
-      let isConnected = false;
+      let isConnectedDB = false;
     try{
        try {
     await mongoose.connect(process.env.MongoDB_URI);

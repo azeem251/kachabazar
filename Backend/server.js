@@ -89,18 +89,38 @@ app.get("/", (req, res) => {
 });
 
 // Connect to MongoDB first, then start the server
-const PORT = process.env.PORT || 4747;
+// const PORT = process.env.PORT || 4747;
 
-const startServer = async () => {
-  try {
-    await connectedDB(); // wait until MongoDB is connected
-    app.listen(PORT,'0.0.0.0', () => {
-      // console.log(`Server is running on port  http://192.168.1.34:${PORT} 🚀`);
-      console.log(`Server is running on port  http://localhost:${PORT} 🚀`);
-    });
-  } catch (err) {
-    console.error("❌ Failed to start server:", err);
+// const startServer = async () => {
+//   try {
+//     await connectedDB(); // wait until MongoDB is connected
+//     app.listen(PORT,'0.0.0.0', () => {
+//       // console.log(`Server is running on port  http://192.168.1.34:${PORT} 🚀`);
+//       console.log(`Server is running on port  http://localhost:${PORT} 🚀`);
+//     });
+//   } catch (err) {
+//     console.error("❌ Failed to start server:", err);
+//   }
+// };
+
+  async function connectToMongoDB(){
+      let isConnected = false;
+    try{
+       try {
+    await mongoose.connect(process.env.MongoDB_URI);
+         isConnectedDB = true;
+    console.log("✅ MongoDB Connected Sucessfully");
+  } catch (error) {
+    console.error("❌ MongoDB connection failed", error);
+    process.exit(1); // Stop server if DB connection fails
   }
-};
-
+    
+  }
+    app.use((req,res,next)=>{
+        if(!isConnectedDB){
+          connectToMongoDB();
+        }
+      next();
+    })
+    module.exports = app
 startServer();

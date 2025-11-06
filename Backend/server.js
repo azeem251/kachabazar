@@ -72,6 +72,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Database connect
+// ✅ MongoDB connection (safe for Vercel)
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  await mongoose.connect(process.env.MONGO_URI);
+  console.log("✅ MongoDB Connected");
+};
 await connectDB();
 
 
@@ -104,6 +110,6 @@ app.get("/", (req, res) => {
 //     console.error("❌ Failed to start server:", err);
 //   }
 // };
-
+export default app;
   
-startServer();
+// startServer();

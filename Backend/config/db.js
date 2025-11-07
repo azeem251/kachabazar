@@ -28,13 +28,13 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
     isConnected = true;
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`❌ MongoDB Connection Failed: ${error.message}`);
-    process.exit(1);
+    throw new Error("MongoDB Connection Failed");
   }
 };
 
 export default connectDB;
+

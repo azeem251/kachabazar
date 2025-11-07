@@ -62,7 +62,7 @@ app.use(passport.session());
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState >= 1) return;
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MongoDB_URI);
     console.log("✅ MongoDB Connected");
   } catch (err) {
     console.error("❌ MongoDB Connection Error:", err.message);

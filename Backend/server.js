@@ -7,13 +7,11 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import path from "path";
 
-// Local imports
-import connectedDB from "./config/db.js";
+import connectDB from "./config/db.js";
 import "./config/passport.js";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import { ContactSendEmail } from "./controllers/ContactSendEmail.js";
-import chatRoutes from "./routes/chatRoutes.js";
 import { chatController } from "./controllers/chatController.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
@@ -58,18 +56,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ✅ MongoDB Connection
-const connectDB = async () => {
-  try {
-    if (mongoose.connection.readyState >= 1) return;
-    await mongoose.connect(process.env.MongoDB_URI);
-    console.log("✅ MongoDB Connected");
-  } catch (err) {
-    console.error("❌ MongoDB Connection Error:", err.message);
+// ✅ MongoDB Connection (Serverless Friendly)
+let isDBConnected = false;
+const connectIfNeeded = async () => {
+  if (!isDBConnected) {
+    await connectDB();
+    isDBConnected = true;
   }
 };
-
-await connectDB();
+await connectIfNeeded();
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
@@ -82,7 +77,8 @@ app.use("/api/order", orderRoutes);
 
 // ✅ Default route
 app.get("/", (req, res) => {
-  res.send("✅ Backend API is running successfully!");
+  res.send("✅ Backend API is running successfully on Vercel!");
 });
 
+// ✅ Export (Vercel expects this)
 export default app;

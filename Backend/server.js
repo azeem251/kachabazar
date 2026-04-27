@@ -23,8 +23,8 @@ const app = express();
 
 // ✅ Allowed Origins
 const allowedOrigins = [
-  "https://kachabazar-ui.onrender.com",
-  "http://localhost:5173",
+   'https://kachabazar-frontend-ebon.vercel.app',
+    'http://localhost:5173'
 ];
 
 // ✅ CORS Setup
@@ -38,7 +38,8 @@ app.use(
         callback(new Error("CORS policy does not allow access from this origin."));
       }
     },
-    credentials: true,
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
   })
 );
 

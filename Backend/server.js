@@ -20,7 +20,9 @@ import orderRoutes from "./routes/orderRoutes.js";
 dotenv.config();
 
 const app = express();
-
+app.options('*', (req, res) => {
+  res.sendStatus(200);
+});
 // ✅ Allowed Origins
 const allowedOrigins = [
    'https://kachabazar-frontend-ebon.vercel.app',

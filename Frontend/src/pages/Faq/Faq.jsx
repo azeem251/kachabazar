@@ -66,6 +66,7 @@ const Faq = () => {
       <div className="faq_aacording_wrapper py-5">
         <div className="container">
           <div className="row gy-3">
+               AZEEM THIS ISI
             <div className="col-lg-6 col-md-6">
               <img src={faqimg} alt="" className="img-fluid" />
             </div>

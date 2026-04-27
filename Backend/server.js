@@ -60,15 +60,31 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+// app.use(
+//   session({
+//     secret: "secretKey123",
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
+//   })
+// );
 app.use(
   session({
     secret: "secretKey123",
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
+    cookie: {
+      httpOnly: true,
+      secure: true,          // MUST
+      sameSite: "none",      // MUST
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   })
 );
-
+axios.post(url, data, {
+  withCredentials: true
+});
+app.options('*', cors());
 app.use(passport.initialize());
 app.use(passport.session());
 

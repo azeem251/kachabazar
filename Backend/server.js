@@ -1,14 +1,4 @@
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+
 
 import express from "express";
 import dotenv from "dotenv";
@@ -40,22 +30,32 @@ const allowedOrigins = [
    'https://kachabazar-frontend-ebon.vercel.app',
     'http://localhost:5173'
 ];
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 // ✅ CORS Setup
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("CORS policy does not allow access from this origin."));
-//       }
-//     },
-//      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true
-//   })
-// );
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS policy does not allow access from this origin."));
+      }
+    },
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+  })
+);
 app.use(cors({
   origin: "https://kachabazar-frontend-ebon.vercel.app",
   credentials: true

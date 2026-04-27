@@ -1,16 +1,13 @@
-
-
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors";
 import mongoose from "mongoose";
 import passport from "passport";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import path from "path";
 
 import connectDB from "./config/db.js";
 import "./config/passport.js";
+
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import { ContactSendEmail } from "./controllers/ContactSendEmail.js";
@@ -20,77 +17,44 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
-
 const app = express();
-app.options('*', (req, res) => {
-  res.sendStatus(200);
-});
-// ✅ Allowed Origins
-const allowedOrigins = [
-   'https://kachabazar-frontend-ebon.vercel.app',
-    'http://localhost:5173'
-];
+
+
+// ✅ VERY IMPORTANT — CORS HANDLER (ONLY THIS, no cors package)
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  
+  res.setHeader("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
   if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+    return res.status(200).end();
   }
   next();
 });
-// ✅ CORS Setup
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS policy does not allow access from this origin."));
-      }
-    },
-     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-  })
-);
-app.use(cors({
-  origin: "https://kachabazar-frontend-ebon.vercel.app",
-  credentials: true
-}));
+
 app.use(express.json());
 app.use(cookieParser());
-// app.use(
-//   session({
-//     secret: "secretKey123",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
-//   })
-// );
+
 app.use(
   session({
     secret: "secretKey123",
     resave: false,
     saveUninitialized: false,
     cookie: {
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  maxAge: 24 * 60 * 60 * 1000,
-}
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   })
 );
-axios.post(url, data, {
-  withCredentials: true
-});
-app.options('*', cors());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ✅ MongoDB Connection (Serverless Friendly)
+
+// ✅ MongoDB connection (serverless safe)
 let isDBConnected = false;
 const connectIfNeeded = async () => {
   if (!isDBConnected) {
@@ -99,6 +63,7 @@ const connectIfNeeded = async () => {
   }
 };
 await connectIfNeeded();
+
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
@@ -109,10 +74,10 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/order", orderRoutes);
 
-// ✅ Default route
+
+// ✅ Health check
 app.get("/", (req, res) => {
-  res.send("✅ Backend API is running successfully on Vercel!");
+  res.send("✅ Backend running on Vercel");
 });
 
-// ✅ Export (Vercel expects this)
 export default app;

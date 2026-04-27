@@ -62,7 +62,10 @@ const ProductFormUpload = () => {
       setLoading(true);
       try {
 
-        const res = await axios.post(`${BACKEND_URL}/api/products/add`, formData);
+        const res = await axios.post(`${BACKEND_URL}/api/products/add`, formData{
+  headers: { "Content-Type": "multipart/form-data" },
+  withCredentials: true,
+});
         Swal.fire("Success!", "Product Added successfully!", "success");
         dispatch(addProduct({ ...values, image: res.data.image }));
         resetForm();

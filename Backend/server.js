@@ -1,3 +1,15 @@
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -28,17 +40,7 @@ const allowedOrigins = [
    'https://kachabazar-frontend-ebon.vercel.app',
     'http://localhost:5173'
 ];
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://kachabazar-frontend-ebon.vercel.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+
 // ✅ CORS Setup
 // app.use(
 //   cors({
@@ -74,11 +76,11 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: true,
-      secure: true,          // MUST
-      sameSite: "none",      // MUST
-      maxAge: 24 * 60 * 60 * 1000,
-    },
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 24 * 60 * 60 * 1000,
+}
   })
 );
 axios.post(url, data, {
